@@ -1,7 +1,18 @@
 package factory.pizzatype;
 
+import factory.ingredient.PizzaIngredientFactory;
+
 public class CheesePizza extends Pizza{
-    public CheesePizza() {
-        name = "치즈 피자";
+    PizzaIngredientFactory ingredientFactory;
+    public CheesePizza(PizzaIngredientFactory ingredientFactory) {
+        this.ingredientFactory = ingredientFactory;
+    }
+
+    @Override
+    public void prepare(){
+        System.out.println("준비 중: " + name);
+        dough = ingredientFactory.createDough();
+        sauce = ingredientFactory.createSauce();
+        cheese = ingredientFactory.createCheese();
     }
 }
